@@ -4,7 +4,6 @@ def equal_sum_seq(A):
     
     for i in range(len(A)):
         sum = 0
-        u = A[i]
         for j in range(i, len(A)):
             sum += A[j]
             for x in X:

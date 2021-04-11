@@ -45,6 +45,7 @@ def first_unique(A):
     # returns True (the element is not unique) and first_unique doesn't return anything.
 
     # Example worst-case input: first_unique([1,2,3,4,5,1,2,3,4,5])
+    # O(n^2)
 
     for i in range(len(A)):
         if linear_search(A, A[i], i) == False:

@@ -10,5 +10,5 @@ def partition(A, begin, end):
             A[i], A[q] = A[q], A[i]
             q += 1
         
-    A[end-1], A[q] = A[q], A[end-1]
+
     return q

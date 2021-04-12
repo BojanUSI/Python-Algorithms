@@ -1,25 +1,25 @@
-def linear_search(A, v):
-    # Complexity: O(n)
-    for a in A:
-        if a == v:
-            return True
-            
-    return False
+from linear_search import *
 
 def minimal_simplified_subset(A):
     X = []
-    for i in range(len(A)-1):
+    Y = []
+    for i in range(len(A) - 1):
         for j in range(i+1, len(A)):
-            s = A[i] + A[j]
-            if linear_search(A, s):
-                X.append(s)
+            sum = 0
+            sum = A[i] + A[j]
+            if linear_search(A, sum):
+                X.append(sum)
+    
+    for a in A:
+        if not linear_search(X, a):
+            Y.append(a)
 
-    for i in range(len(A)):
-        for j in range(len(X)):
-            if A[i] == A[j]:
-                A.pop(i)
 
-    return A
+    return Y
+            
+
+
+
 
                 
 

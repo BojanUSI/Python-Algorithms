@@ -1,0 +1,45 @@
+Question 1:
+The algorithm goes through every element in A and returns
+True if there is another element in the array such that
+it is equal to A[i] + x
+
+Question 2:
+There is a difference between the best and worst case.
+
+Best case:
+Complexity - O(1), constant : The required element we are looking
+for is found on the first iteration of the for-loop in
+algo_y, when the element is at initial position k. 
+algo_x then return True at the first iteration (i = 0).
+
+Best case input:
+algo_x([2,4,6,8,10,12,14], 6), where:
+A[i] = 2
+A[i] + x = 8
+k = 3
+A[k] = 8
+
+Worst case:
+Complexity - Θ(n logn): Since A is initially sorted,
+we are splitting the array in half on every iteration
+depending on A[k], therefore we perform logn splits n times.
+Worst case is when the element we are looking for is not
+in the array.
+
+Worst case input:
+algo_x([2,4,6,8,10,12,14], 50)
+
+
+def better_algo_x(A, x):
+    while(i < len(A)-1 and j < len(A)): 
+
+        # i goes to one before len, j goes to len
+        # prevents index error
+
+        if A[j] - A[i] == x:
+            return True
+        if A[j] - A[i] > x:
+            j += 1
+        if A[j] - A[i] < x:
+            i += 1
+    return False

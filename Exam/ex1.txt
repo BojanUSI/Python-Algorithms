@@ -1,0 +1,18 @@
+Question 1:
+The algorithm removes elements from the array that
+are less than k, and creates a new array with the new elements
+and sums them
+
+Question 3:
+
+def better-algo-x(A,k):
+    N = []
+    for a in A:
+        if a >= k:
+            N.append(a)
+    
+    sum = 0
+    for n in N:
+        sum += N
+    
+    return sum

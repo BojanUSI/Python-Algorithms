@@ -148,6 +148,7 @@ def bst_next(t):
 def bst_prev(v):
     pass
 
+# Search for a key in BST:
 def bst_search(t, k):
     while t != None and t.key != k:
         if k > t.key:
@@ -155,3 +156,43 @@ def bst_search(t, k):
         else:  
             t = t.left
     return t != None
+
+
+# Insert a node in BST:
+# Insert key k in BST at t
+# t may be null
+# keys may be repeated
+# return the root of the (potentially new) tree
+def bst_insert(t, k):
+    if t == None:
+        return Node(k)
+    
+    r = t
+
+    while True:
+        assert t != None
+        if k <= t.key:
+            if t.left != None:
+                t = t.left
+            else:
+                t.left = Node(k)
+                return r
+        else:
+            if t.right != None:
+                t = t.right
+            else:
+                t.right = Node(k)
+                return r
+
+# Rotate BST:
+def bst_right_rotate(t):
+      r = t.left
+      t.left = r.right
+      r.right = t
+      return r
+
+def bst_left_rotate(t):
+      r = t.right
+      t.right = r.left
+      r.left = t
+      return r

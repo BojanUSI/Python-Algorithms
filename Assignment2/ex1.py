@@ -94,3 +94,26 @@ def left_rotate(t):
     t.right = r.left
     r.left = t
     return r
+
+
+t = node(12)
+t.left = node(5)
+t.left.left = node(2)
+t.left.left.right = node(4)
+t.left.right = node(9)
+t.right = node(18)
+t.right.right = node(19)
+t.right.left = node(15)
+t.right.left.left = node(13)
+t.right.left.right = node(17)
+
+
+def bst_balance(t):
+    l = t.left
+
+    while l.left != None:
+        l = right_rotate(l)
+        l = l.left
+    while l.right != None:
+        bst_balance(l.right)
+        

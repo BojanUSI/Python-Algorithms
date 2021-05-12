@@ -51,16 +51,15 @@ def quick_sort(A, begin, end):
 
 def better_algo_x(A, B):
 
-    if len(A) != len(B):
-        return False
+    if len(A) == len(B):
     
-    A.sort(reverse =  True)
-    B.sort()
+        A.sort(reverse =  True)
+        B.sort()
 
-    for i in range(len(A)):
-        if A[i] != -B[i]:
-            return False
+        for i in range(len(A)):
+            if A[i] != -B[i]:
+                return False
+
+        return True
     
-    return True
-    
-    
+    return False    

@@ -116,4 +116,13 @@ def bst_balance(t):
         l = l.left
     while l.right != None:
         bst_balance(l.right)
-        
+
+def skew(t):
+    l = t.left
+    if l.left != None:
+        l = right_rotate(l)
+        skew(t)
+    else:
+        if l.right != None and l.right.left != None:
+            l.right = right_rotate(l.right)
+            skew(t)

@@ -17,6 +17,8 @@ Back = 0
 # Points to the first element past the last in the queue,
 # which is where next element is enqueued
 
+
+# Queue functions
 def next(Q, p):
     p += 1
     if p == len(Q):
@@ -44,8 +46,10 @@ def dequeue(Q):
         Front = next(Q, Front)
         return x
 
+# Print elements of BST that are on the same level
 def print_bst_by_level(t):
 
+    # If the input tree is None, return nothing
     if t == None:
         return
 
@@ -55,11 +59,13 @@ def print_bst_by_level(t):
     if size == 1:
         return t.key
     else:
+        # Initialize a queue that has a size at most 2 times bigger than BST
         Q =[None]*(2 * size)
 
     enqueue(Q, t)
     enqueue(Q, "separator")
 
+    # Traverses through BST and prints elements level by level
     while True:
         current = dequeue(Q)
         if current != "separator":

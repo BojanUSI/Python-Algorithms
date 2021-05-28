@@ -1,12 +1,7 @@
-class node:
-    def __init__(self,k):
-        self.key = k
-        self.left = None
-        self.right = None
-
 #!/usr/bin/python3
 
 import sys
+
 
 class Node:
     def __init__(self,value):
@@ -15,6 +10,9 @@ class Node:
         self.right = None
         self.parent = None
 
+t = Node(1)
+t.right = Node(2)
+t.right.right = Node(10)
 class Canvas:
     def __init__(self,width):
         self.line_width = width
@@ -95,34 +93,63 @@ def left_rotate(t):
     r.left = t
     return r
 
+# The function straigthens the input BST into a single line.
+# All nodes are traversed in the tree and when needed a rotation is performed.
+# Cost of function rotate is constant time.
+# Therefore the total complexity of straight() is O(n) as we traverse the entire BST.  
+def straight(t):
 
-t = node(12)
-t.left = node(5)
-t.left.left = node(2)
-t.left.left.right = node(4)
-t.left.right = node(9)
-t.right = node(18)
-t.right.right = node(19)
-t.right.left = node(15)
-t.right.left.left = node(13)
-t.right.left.right = node(17)
+    if t == None:
+        return None
+    
+    while t.left != None:
+        t = right_rotate(t)
+
+    r = t
+
+    t.right = straight(t.right)
+
+    return r
+
+# The function takes the node of a straigthened tree and puts all values of all nodes
+# into an array. A sorted array with all nodes of the straigthened BST is returned.
+# The cost of this function is \Theta(n)
+def to_array(node):
+    A = []
+    if node != None:
+        while node != None:
+            A.append(node.key)
+            node = node.right
+    
+    return A
+
+# The function takes a sorted array and forms a BST based on the array.
+# It performs similarly to a binary search where it picks a middle pivot element
+# and splits up the array (and all subarrays) logn times.
+# Therefore the total complexity of this function is \Theta(logn)
+def to_BST(A):
+    
+    if A:
+        middle = len(A)//2
+        temp_node = Node(A[middle])
+        temp_node.left = to_BST(A[:middle])
+        temp_node.right = to_BST(A[middle+1:])
+        return temp_node
+
+# Takes a BST tree and returns a balanced BST
+# The total complexity of this algorithm is:
+# Complexity of straight() * Complexity of to_BST() + Complexity of to_array()
+# Therefore the total complexity of the algorithm is O(nlogn)
+def balance(t):
+    
+    straight_tree = straight(t)
+    A = to_array(straight_tree)
+    print_tree(to_BST(A))
+
+    
 
 
-def bst_balance(t):
-    l = t.left
 
-    while l.left != None:
-        l = right_rotate(l)
-        l = l.left
-    while l.right != None:
-        bst_balance(l.right)
 
-def skew(t):
-    l = t.left
-    if l.left != None:
-        l = right_rotate(l)
-        skew(t)
-    else:
-        if l.right != None and l.right.left != None:
-            l.right = right_rotate(l.right)
-            skew(t)
+    
+    

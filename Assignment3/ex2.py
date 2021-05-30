@@ -19,30 +19,25 @@ for line in sys.stdin:
     v_i = V_idx[A[0]]
     for i in range(1, len(A)):
         u_i = V_idx[A[i]]
+        Adj[u_i].append(v_i)
         Adj[v_i].append(u_i)
 
-n = len(V)
+Visited = [False]*len(V)
 
-# BFS(G, 0)
+def algo(a, A):
 
-# Queue
-Q = [0]
-# Index in queue (head of queue)
-head = 0
+    Visited[a] = True
 
-Visited = [False]*n
-Visited[0] = True
-count = 1
-while head < len(Q):
-    v = Q[head]
-    head += 1
-    for u in Adj[v]:
-        if  not Visited[u]:
-            Visited[u] = True
-            Q.append(u)
-            count += 1
+    for i in Adj[a]:
+        if (not Visited[i]):
+            algo(i, Visited)
 
-if count == n:
-    print('Connected')
-else:
-    print('Disconnected')
+counter = 0
+
+for i in range(len(V)):
+    if Visited[i] == False:
+        algo(i, Visited)
+        counter += 1
+
+print(counter)
+

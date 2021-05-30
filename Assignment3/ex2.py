@@ -7,6 +7,7 @@ V_idx = {}
 # strip() - removes spaces in front or behind
 # split() - splits words into differenet array elements
 
+# Total complexity O(n^3)
 for line in sys.stdin:
     A = line.strip().split()
     for v in A:
@@ -41,3 +42,6 @@ for i in range(len(V)):
 
 print(counter)
 
+# Complexity Analysis:
+# Worst case: O(n^3) - A connected graph. A region is connected to any other region in the graph.
+# Best case: O(n) - A disjoint graph (edgeless graph). Every region is an island.

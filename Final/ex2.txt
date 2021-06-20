@@ -1,0 +1,46 @@
+Q1:
+
+The decision problem is in P. A solution with complexity
+O (n^2) exists.
+
+A(k, l):
+
+    C = [0] * |P|
+
+    for i from 1 to |P|:
+        p_x = P[i]
+
+        for j from 1 to |P|:
+            p_y = P[j]
+
+            if KNOWS(p_x, p_y):
+                C[i] = C[i] + 1
+    
+    c = 0
+
+    for i from 1 to |P|:
+
+        if C[i] >= l:
+            c = c + 1
+    
+    if c >= k:
+        return True
+    else return False
+
+
+The decision problem is in NP. Providing a verification algorithm and an additional
+subset of P, T which has the same size as k and it is checked whether every person
+in T is a stranger.
+
+A(k):
+
+    if |T| > k or |T| < k:
+        return False
+    else:
+        for every p_t1 in T:
+            for every p_t2 in T:
+                if KNOWS(p_t1, p_t2):
+                    return False
+    
+    return True
+

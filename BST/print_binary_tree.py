@@ -196,3 +196,44 @@ def bst_left_rotate(t):
       t.right = r.left
       r.left = t
       return r
+
+def tree_to_vine(t):
+
+    if t == None:
+        return None
+    
+    while t.left != None:
+        t = bst_right_rotate(t)
+
+    r = t
+
+    t.right = tree_to_vine(t.right)
+
+    return r
+
+def getCount(root, low, high):
+     
+    # Base case
+    if root == None:
+        return 0
+         
+    # Special Optional case for improving
+    # efficiency
+    if root.key == high and root.key == low:
+        return 1
+ 
+    # If current node is in range, then
+    # include it in count and recur for
+    # left and right children of it
+    if root.key < high and root.key > low:
+        return (1 + getCount(root.left, low, high) +
+                    getCount(root.right, low, high))
+ 
+    # If current node is smaller than low,
+    # then recur for right child
+    elif root.key <= low:
+        return getCount(root.right, low, high)
+ 
+    # Else recur for left child
+    else:
+        return getCount(root.left, low, high)
